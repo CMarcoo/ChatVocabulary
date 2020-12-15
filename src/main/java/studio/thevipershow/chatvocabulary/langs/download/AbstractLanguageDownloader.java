@@ -47,7 +47,7 @@ public abstract class AbstractLanguageDownloader<T extends Enum<T> & Language> i
                     HttpRequest.newBuilder(uri).version(HttpClient.Version.HTTP_2).build()
                     , defaultLanguageResponse
             ).thenApply(HttpResponse::body).whenComplete((body, throwable) -> {
-                if (throwable != null) {
+                if (throwable == null) {
                     this.chatVocabulary.getLogger().info("Download for language " + language.getName() + " has finished.");
                     this.chatVocabulary.getLogger().info(String.format("Time taken: %.4f milliseconds", ((currentTime - System.currentTimeMillis()) / 1e3)));
                     this.languageStorageManager.putLanguageData(language, body);
