@@ -54,7 +54,7 @@ public final class StandardLanguageStorageManager extends AbstractLanguageStorag
             this.lockedFiles.put(language, true);
         }
 
-        var targetFile = new File(this.chatVocabulary.getDataFolder(), language + ".txt");
+        var targetFile = new File(this.chatVocabulary.getDataFolder(), language.getDefaultFilename());
         final var data = Objects.requireNonNull(this.savedLanguageTextMap.get(language), String.format("Data for language %s was null.", language.getName()));
         final var stringList = data.split("\\r?\\n");
         final var stringArrayList = new ArrayList<String>(stringList.length);
@@ -67,6 +67,12 @@ public final class StandardLanguageStorageManager extends AbstractLanguageStorag
             if (targetFile.exists() && replace) {
                 FileUtils.writeLines(targetFile, "ISO-8859-1", stringArrayList);
             } else if (!targetFile.exists()) {
+                var dataFolder = this.chatVocabulary.getDataFolder();
+                if (!dataFolder.exists()) {
+                    dataFolder.mkdirs();
+                }
+
+                this.chatVocabulary.getLogger().info("Creating new language file at " + targetFile.getCanonicalPath());
                 var result = targetFile.createNewFile();
                 if (result && targetFile.canRead()) {
                     FileUtils.writeLines(targetFile, "ISO-8859-1", stringArrayList);

@@ -49,7 +49,7 @@ public abstract class AbstractLanguageDownloader<T extends Enum<T> & Language> i
             ).thenApply(HttpResponse::body).whenComplete((body, throwable) -> {
                 if (throwable == null) {
                     this.chatVocabulary.getLogger().info("Download for language " + language.getName() + " has finished.");
-                    this.chatVocabulary.getLogger().info(String.format("Time taken: %.4f milliseconds", ((currentTime - System.currentTimeMillis()) / 1e3)));
+                    this.chatVocabulary.getLogger().info(String.format("Time taken: %.4f milliseconds", ((System.currentTimeMillis()- currentTime) / 1e3)));
                     this.languageStorageManager.putLanguageData(language, body);
                 } else {
                     chatVocabulary.getLogger().warning(String.format("Something has gone wrong with %s language obtainment.", language.getName()));
