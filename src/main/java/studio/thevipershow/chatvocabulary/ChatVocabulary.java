@@ -8,6 +8,7 @@ public final class ChatVocabulary extends JavaPlugin {
     public final void onEnable() {
         // Plugin startup logic
 
+
     }
 
     @Override

@@ -1,0 +1,7 @@
+name: ChatVocabulary
+version: ${project.version}
+main: studio.thevipershow.chatvocabulary.ChatVocabulary
+api-version: 1.16
+authors: [ TheViperShow ]
+description: Spigot chat completion with language-specific vocabulary.
+website: https://github.com/TheViperShow/ChatVocabulary
