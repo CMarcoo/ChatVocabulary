@@ -18,6 +18,7 @@ public enum StandardLanguage implements Language {
     private final String languageName;
     private final String languageUrl;
 
+    public final static StandardLanguage DEFAULT = ENGLISH;
     private final static String BASE_GITHUB_URL = "https://raw.githubusercontent.com/TheViperShow/ChatVocabulary/main/langs/";
 
     private static String buildLanguageUrl(@NotNull String languageName) {

@@ -14,6 +14,7 @@ public final class ChatVocabulary extends JavaPlugin {
     @Override
     public final void onEnable() { // Plugin startup logic
         this.languageDownloader = StandardLanguageDownloader.getInstance(this);
+        this.languageDownloader.downloadAsyncAndExport(StandardLanguage.DEFAULT, false);
     }
 
     @Override
